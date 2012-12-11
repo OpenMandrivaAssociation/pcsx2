@@ -13,9 +13,12 @@ Source:		%{name}-%{version}-r%{revision}-sources.tar.bz2
 Patch0:		pcsx2-1.0.0-r5350-docs.patch
 
 BuildRequires:	cmake
+BuildRequires:	subversion
+BuildRequires:	bzip2-devel
 BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	sparsehash-devel
+BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(gtk+-2.0)
