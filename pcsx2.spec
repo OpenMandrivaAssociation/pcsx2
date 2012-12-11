@@ -57,7 +57,7 @@ cp -r 3rdparty/SoundTouch 3rdparty/soundtouch
 %doc COPYING.*
 %{_bindir}/%{name}
 %{_bindir}/%{name}_*
-%{_desktopdir}/%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 %{_datadir}/games/%{name}
 %{_libdir}/games/%{name}
