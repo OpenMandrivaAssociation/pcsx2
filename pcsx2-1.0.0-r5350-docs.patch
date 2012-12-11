@@ -1,0 +1,13 @@
+diff -urN pcsx2-1.0.0-r5350-sources/CMakeLists.txt pcsx2-1.0.0-r5350-sources-patched/CMakeLists.txt
+--- pcsx2-1.0.0-r5350-sources/CMakeLists.txt	2012-07-07 01:18:22.000000000 +1100
++++ pcsx2-1.0.0-r5350-sources-patched/CMakeLists.txt	2012-12-11 22:48:00.656560306 +1100
+@@ -95,7 +95,7 @@
+     INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/GameIndex.dbf" DESTINATION "${GAMEINDEX_DIR}")
+     INSTALL(FILES "${PROJECT_SOURCE_DIR}/linux_various/pcsx2.desktop" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/applications")
+     INSTALL(FILES "${PROJECT_SOURCE_DIR}/linux_various/pcsx2.xpm" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/pixmaps")
+-    INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/docs/PCSX2_FAQ_0.9.8.pdf" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/pcsx2")
+-    INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/docs/PCSX2_Readme_0.9.8.pdf" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/pcsx2")
++    INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/docs/PCSX2_FAQ_1.0.0.pdf" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/pcsx2")
++    INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/docs/PCSX2_Readme_1.0.0.pdf" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/pcsx2")
+     INSTALL(FILES "${PROJECT_SOURCE_DIR}/bin/docs/pcsx2.1" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1/")
+ endif(PACKAGE_MODE)
