@@ -24,6 +24,7 @@ BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(portaudio-2.0)
 BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 ExclusiveArch:	%{ix86}
