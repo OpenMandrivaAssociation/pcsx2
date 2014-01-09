@@ -9,18 +9,22 @@ Release:	1
 License:	GPL
 Group:		Emulators
 Url:		http://pcsx2.net/
-#Source:		%{name}-%{version}-r%{revision}-sources.tar.bz2
+Source:		%{name}-%{version}-r%{revision}-sources.tar.bz2
 Patch0:		pcsx2-1.0.0-r5350-docs.patch
 
 BuildRequires:	cmake
+BuildRequires:	subversion
+BuildRequires:	bzip2-devel
 BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	sparsehash-devel
+BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(portaudio-2.0)
 BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 ExclusiveArch:	%{ix86}
@@ -53,7 +57,7 @@ cp -r 3rdparty/SoundTouch 3rdparty/soundtouch
 %doc COPYING.*
 %{_bindir}/%{name}
 %{_bindir}/%{name}_*
-%{_desktopdir}/%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 %{_datadir}/games/%{name}
 %{_libdir}/games/%{name}
