@@ -15,7 +15,7 @@ Patch0:		pcsx2-1.0.0-r5350-docs.patch
 BuildRequires:	cmake
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
-BuildRequires:	cg-devel
+BuildRequires:	Cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	sparsehash-devel
 BuildRequires:	wxgtku-devel
