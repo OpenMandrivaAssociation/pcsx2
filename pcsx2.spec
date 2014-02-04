@@ -13,11 +13,14 @@ Source0:	%{name}-%{version}-r%{revision}-sources.tar.bz2
 BuildRequires:	cmake
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
-#BuildRequires:	cg-devel
+BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
+BuildRequires:	libaio-devel
 BuildRequires:	sparsehash-devel
 BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(portaudio-2.0)
