@@ -1,21 +1,19 @@
 %define _disable_ld_no_undefined 1
 
-%define revision 5350
+%define revision 5875
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.0.0
+Version:	1.2.1
 Release:	1
-License:	GPL
+License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
-Source:		%{name}-%{version}-r%{revision}-sources.tar.bz2
-Patch0:		pcsx2-1.0.0-r5350-docs.patch
-
+Source0:	%{name}-%{version}-r%{revision}-sources.tar.bz2
 BuildRequires:	cmake
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
-BuildRequires:	Cg-devel
+#BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	sparsehash-devel
 BuildRequires:	wxgtku-devel
@@ -38,11 +36,11 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 
 %prep
 %setup -q -n %{name}-%{version}-r%{revision}-sources
-%patch0 -p1
 
 %build
 cp -r 3rdparty/SoundTouch 3rdparty/soundtouch
 %cmake \
+	-DCMAKE_BUILD_TYPE=Release \
 	-DFORCE_INTERNAL_SOUNDTOUCH=TRUE \
 	-DPACKAGE_MODE=TRUE
 
@@ -59,8 +57,8 @@ cp -r 3rdparty/SoundTouch 3rdparty/soundtouch
 %{_bindir}/%{name}_*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
-%{_datadir}/games/%{name}
+%{_datadir}/games/%{name}/cheats_ws.zip
+%attr(0666,games,games) %{_datadir}/games/%{name}/GameIndex.dbf
 %{_libdir}/games/%{name}
-%attr(0666,games,games) %{_var}/games/%{name}/GameIndex.dbf
 %{_mandir}/man1/%{name}.1*
 
