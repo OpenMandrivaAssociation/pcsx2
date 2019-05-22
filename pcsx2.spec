@@ -1,5 +1,5 @@
 %define _disable_ld_no_undefined 1
-%define git    20190505
+%define git    20190522
 
 
 Summary:	Sony PlayStation 2 Emulator
