@@ -20,7 +20,7 @@ BuildRequires:	jpeg-devel
 BuildRequires:	libaio-devel
 BuildRequires:  pcap-devel
 BuildRequires:	sparsehash-devel
-BuildRequires:	wxgtku-devel
+#BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
