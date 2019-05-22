@@ -26,7 +26,7 @@ BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glew)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
@@ -74,8 +74,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
     -DGAMEINDEX_DIR="%{_gamesdatadir}/%{name}" \
     -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
     -DDOC_DIR="%{_docdir}/%{name}" \
-    -DSDL2_API=TRUE \
-    -DGTK3_API=FALSE
+    -DSDL2_API=TRUE
+   
 
 %make_build
 
