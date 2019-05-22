@@ -20,7 +20,7 @@ BuildRequires:	jpeg-devel
 BuildRequires:	libaio-devel
 BuildRequires:  pcap-devel
 BuildRequires:	sparsehash-devel
-BuildRequires:	wxgtku-devel
+#BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 #BuildRequires:  wxgtku3.0-devel
+BuildRequires:  wxgtku2.8-devel
 
 #ExclusiveArch:	%{ix86}
 
