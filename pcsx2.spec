@@ -38,7 +38,7 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:  wxgtku3.0-devel
 
-ExclusiveArch:	%{ix86}
+#ExclusiveArch:	%{ix86}
 
 %description
 Sony PlayStation 2 emulator. Requires a BIOS image to run. Check 
