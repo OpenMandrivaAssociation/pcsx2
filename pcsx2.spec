@@ -16,7 +16,6 @@ BuildRequires:	cmake
 BuildRequires:  gettext
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
-BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	libaio-devel
 BuildRequires:  pcap-devel
