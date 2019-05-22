@@ -1,31 +1,43 @@
 %define _disable_ld_no_undefined 1
+%define git    20190505
+
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.2.2
-Release:	2
+Version:	1.5.0
+Release:	1
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
-Source0:	https://github.com/PCSX2/pcsx2/archive/%{name}-%{version}.tar.gz
+#Source0:	https://github.com/PCSX2/pcsx2/archive/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}-%{git}.tar.gz
+
 BuildRequires:	cmake
+BuildRequires:  gettext
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
 BuildRequires:	cg-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	libaio-devel
+BuildRequires:  pcap-devel
 BuildRequires:	sparsehash-devel
 BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
+BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(liblzma)
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(portaudio-2.0)
-BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:  wxgtku3.0-devel
+
 ExclusiveArch:	%{ix86}
 
 %description
@@ -49,19 +61,27 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-
+%autosetup -p1 -n %{name}-%{version}-%{git}
 %build
-cp -r 3rdparty/SoundTouch 3rdparty/soundtouch
 %cmake \
-	-DCMAKE_BUILD_TYPE=Release \
-	-DFORCE_INTERNAL_SOUNDTOUCH=TRUE \
-	-DPACKAGE_MODE=TRUE
+    -DPACKAGE_MODE=TRUE \
+    -DXDG_STD=TRUE \
+    -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
+    -DBUILD_REPLAY_LOADERS=TRUE \
+    -DDISABLE_ADVANCE_SIMD=TRUE \
+    -DDISABLE_BUILD_TIME=TRUE \
+    -DDISABLE_PCSX2_WRAPPER=TRUE \
+    -DEXTRA_PLUGINS=TRUE \
+    -DGAMEINDEX_DIR="%{_gamesdatadir}/%{name}" \
+    -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
+    -DDOC_DIR="%{_docdir}/%{name}" \
+    -DSDL2_API=TRUE \
+    -DGTK3_API=FALSE
 
-%make VERBOSE=1
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 %find_lang %{name} --all-name
 
