@@ -20,13 +20,13 @@ BuildRequires:	jpeg-devel
 BuildRequires:	libaio-devel
 BuildRequires:  pcap-devel
 BuildRequires:	sparsehash-devel
-#BuildRequires:	wxgtku-devel
+BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glew)
-BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
@@ -35,7 +35,7 @@ BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:  wxgtku3.0-devel
+#BuildRequires:  wxgtku3.0-devel
 
 #ExclusiveArch:	%{ix86}
 
@@ -74,7 +74,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
     -DGAMEINDEX_DIR="%{_gamesdatadir}/%{name}" \
     -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
     -DDOC_DIR="%{_docdir}/%{name}" \
-    -DSDL2_API=TRUE
+    -DSDL2_API=TRUE \
+    -DGTK3_API=FALSE
    
 
 %make_build
