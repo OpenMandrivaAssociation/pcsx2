@@ -61,7 +61,7 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}-%{version}-%{git}
+%autosetup -p1 -n %{name}-%{version}
 %build
 %cmake \
     -DPACKAGE_MODE=TRUE \
