@@ -4,13 +4,12 @@
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.5.0
+Version:	1.6.0
 Release:	1
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
-#Source0:	https://github.com/PCSX2/pcsx2/archive/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}-%{git}.tar.gz
+Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:	cmake
 BuildRequires:  gettext
@@ -26,17 +25,18 @@ BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glew)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(portaudio-2.0)
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(soundtouch)
+BuildRequires:  pkgconfig(udev)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
-#BuildRequires:  wxgtku3.0-devel
-BuildRequires:  wxgtku2.8-devel
+BuildRequires:  wxgtku3.0-devel
+#BuildRequires:  wxgtku2.8-devel
 
 #ExclusiveArch:	%{ix86}
 
@@ -76,7 +76,7 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
     -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
     -DDOC_DIR="%{_docdir}/%{name}" \
     -DSDL2_API=TRUE \
-    -DGTK3_API=FALSE
+    -DGTK3_API=TRUE
    
 
 %make_build
