@@ -68,7 +68,7 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %autosetup -p1 -n %{name}-%{version}
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
-%global ldflags %{ldflags} -fuse-ld=gold
+%global ldflags %{ldflags} -fuse-ld=bfd
 #export CC=gcc
 #export CXX=g++
 %cmake \
