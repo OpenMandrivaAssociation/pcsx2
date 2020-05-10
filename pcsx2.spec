@@ -69,14 +69,14 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 %cmake \
     -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
     -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
     -DBUILD_REPLAY_LOADERS=TRUE \
-    -DDISABLE_ADVANCE_SIMD=TRUE \
+    -DDISABLE_ADVANCE_SIMD=FALSE \
     -DDISABLE_BUILD_TIME=TRUE \
     -DDISABLE_PCSX2_WRAPPER=TRUE \
     -DEXTRA_PLUGINS=TRUE \
