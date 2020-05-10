@@ -70,20 +70,23 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
-# Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (momory dump) at launch.
+# Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (memory dump) at launch.
 # Do not switch back to Clang without testing if this issue is fixed! (angry)
 export CC=gcc
 export CXX=g++
 
+# FIXME
 # Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
 # https://github.com/PCSX2/pcsx2/issues/3096
+# and when switch it to TRUE, Clang and GCC gives me illegal instruction (memory dump) at launch.
+# So for now we back to GCC and leave SIMD as True.
 
 %cmake \
     -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
     -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
     -DBUILD_REPLAY_LOADERS=TRUE \
-    -DDISABLE_ADVANCE_SIMD=FALSE \
+    -DDISABLE_ADVANCE_SIMD=TRUE \
     -DDISABLE_BUILD_TIME=TRUE \
     -DDISABLE_PCSX2_WRAPPER=TRUE \
     -DEXTRA_PLUGINS=TRUE \
