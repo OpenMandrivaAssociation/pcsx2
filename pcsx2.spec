@@ -1,5 +1,5 @@
 %define _disable_ld_no_undefined 1
-%define git    20190522
+%define _disable_lto 1
 
 
 Summary:	Sony PlayStation 2 Emulator
@@ -66,6 +66,9 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %prep
 %autosetup -p1 -n %{name}-%{version}
 %build
+%global ldflags %{ldflags} -Wl,-z,notext
+%global ldflags %{ldflags} -fuse-ld=gold
+
 %cmake \
     -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
