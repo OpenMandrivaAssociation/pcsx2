@@ -4,7 +4,7 @@
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
 Version:	1.6.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
@@ -70,6 +70,10 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
+# Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (momory dump) at launch.
+# Do not switch back to Clang without testing if this issue is fixed! (angry)
+export CC=gcc
+export CXX=g++
 
 # Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
 # https://github.com/PCSX2/pcsx2/issues/3096
