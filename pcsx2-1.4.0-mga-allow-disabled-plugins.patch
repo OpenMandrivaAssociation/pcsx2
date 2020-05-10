@@ -1,0 +1,13 @@
+Index: pcsx2-1.4.0/cmake/SelectPcsx2Plugins.cmake
+===================================================================
+--- pcsx2-1.4.0/cmake/SelectPcsx2Plugins.cmake
++++ pcsx2-1.4.0/cmake/SelectPcsx2Plugins.cmake	2016-01-15 18:34:49.294264675 +0100
+@@ -17,7 +17,7 @@
+ 
+ macro(print_dep str dep)
+     if (PACKAGE_MODE)
+-        message(FATAL_ERROR "${str}:${dep}")
++        message(STATUS "${str}:${dep}")
+     else()
+         message(STATUS "${str}:${dep}")
+     endif()
