@@ -68,7 +68,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
-
+export CC=gcc
+export CXX=g++
 %cmake \
     -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
