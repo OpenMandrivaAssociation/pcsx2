@@ -10,6 +10,8 @@ License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0:         pcsx2-1.4.0-mga-allow-disabled-plugins.patch
+Patch1:         0001-CMake-Properly-support-RelWithDebInfo-build-type.patch
 
 BuildRequires:	cmake
 BuildRequires:  gettext
