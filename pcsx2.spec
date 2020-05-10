@@ -52,14 +52,15 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 
 %files -f %{name}.lang
 %doc COPYING.*
-%{_bindir}/%{name}
+%doc %{_docdir}/%{name}/*.pdf
+%{_bindir}/PCSX2
 %{_bindir}/%{name}_*
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.xpm
+%{_datadir}/applications/PCSX2.desktop
+%{_datadir}/pixmaps/PCSX2.xpm
 %{_datadir}/games/%{name}/cheats_ws.zip
 %attr(0666,games,games) %{_datadir}/games/%{name}/GameIndex.dbf
-%{_libdir}/games/%{name}
-%{_mandir}/man1/%{name}.1*
+%{_libdir}/games/%{name}/
+%{_mandir}/man1/PCSX2.1*
 
 #----------------------------------------------------------------------------
 
