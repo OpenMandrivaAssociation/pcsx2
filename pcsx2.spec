@@ -1,6 +1,5 @@
 %define _disable_ld_no_undefined 1
-#define _disable_lto 1
-
+%define _disable_lto 1
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
@@ -41,7 +40,9 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:  wxgtku3.0-devel
 #BuildRequires:  wxgtku2.8-devel
 
-#ExclusiveArch:	%{ix86}
+# 1.6.0 (may 2020) and x86_64 is still not ready (angry)
+# re check it for future releases
+ExclusiveArch:	%{ix86}
 
 %description
 Sony PlayStation 2 emulator. Requires a BIOS image to run. Check 
@@ -68,9 +69,10 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %autosetup -p1 -n %{name}-%{version}
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
-%global ldflags %{ldflags} -fuse-ld=bfd
-#export CC=gcc
-#export CXX=g++
+%global ldflags %{ldflags} -fuse-ld=gold
+
+#Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
+
 %cmake \
     -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
@@ -93,4 +95,3 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %make_install -C build
 
 %find_lang %{name} --all-name
-
