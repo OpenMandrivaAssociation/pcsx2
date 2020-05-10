@@ -71,7 +71,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
 
-#Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
+# Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
+# https://github.com/PCSX2/pcsx2/issues/3096
 
 %cmake \
     -DPACKAGE_MODE=TRUE \
