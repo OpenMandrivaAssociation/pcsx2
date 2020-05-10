@@ -21,6 +21,7 @@ BuildRequires:  pcap-devel
 BuildRequires:	sparsehash-devel
 #BuildRequires:	wxgtku-devel
 BuildRequires:	pkgconfig(alsa)
+BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
