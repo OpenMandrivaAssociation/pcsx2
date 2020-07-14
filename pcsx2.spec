@@ -1,16 +1,23 @@
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
+# Using a snapshot for now to get 64-bit support
+%define snapshot 20200714
+
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.6.0
-Release:	2
+Version:	1.7.0
+Release:	%{?snapshot:0.%{snapshot}.}1
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
+%if 0%{?snapshot:1}
+Source0:	https://github.com/beaumanvienna/pcsx2/archive/x86_64-support/%{name}-%{snapshot}.tar.gz
+Source1:	https://github.com/google/googletest/archive/aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e.tar.gz
+%else
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
+%endif
 Patch0:         pcsx2-1.4.0-mga-allow-disabled-plugins.patch
-Patch1:         0001-CMake-Properly-support-RelWithDebInfo-build-type.patch
 
 BuildRequires:	cmake
 BuildRequires:  gettext
@@ -42,7 +49,7 @@ BuildRequires:  wxgtku3.0-devel
 
 # 1.6.0 (may 2020) and x86_64 is still not ready (angry)
 # re check it for future releases
-ExclusiveArch:	%{ix86}
+#ExclusiveArch:	%{ix86}
 
 %description
 Sony PlayStation 2 emulator. Requires a BIOS image to run. Check 
@@ -66,7 +73,14 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 #----------------------------------------------------------------------------
 
 %prep
+%if 0%{?snapshot:1}
+%autosetup -p1 -n %{name}-x86_64-support -a 1
+rmdir 3rdparty/gtest
+mv googletest-aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e 3rdparty/gtest
+%else
 %autosetup -p1 -n %{name}-%{version}
+%endif
+
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
