@@ -84,10 +84,13 @@ mv googletest-aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e 3rdparty/gtest
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
 %global ldflags %{ldflags} -fuse-ld=gold
+
+%if 0
 # Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (memory dump) at launch.
 # Do not switch back to Clang without testing if this issue is fixed! (angry)
 export CC=gcc
 export CXX=g++
+%endif
 
 # FIXME
 # Do not switch -DDISABLE_ADVANCE_SIMD= to true, because then Clang build fail (angry)
