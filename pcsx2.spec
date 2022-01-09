@@ -20,6 +20,7 @@ Source1:    https://github.com/biojppm/rapidyaml/archive/refs/tags/v0.3.0/rapidy
 %endif
 
 BuildRequires:	cmake
+BuildRequires:  c4project
 BuildRequires:  gettext
 BuildRequires:	subversion
 BuildRequires:	bzip2-devel
