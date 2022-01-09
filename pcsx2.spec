@@ -2,11 +2,11 @@
 %define _disable_lto 1
 
 # Using a snapshot for now to get 64-bit support
-%define snapshot 20200714
+define snapshot 20220108
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.7.0
+Version:	1.7.0.2212
 Release:	%{?snapshot:0.%{snapshot}.}1
 License:	GPLv2+
 Group:		Emulators
