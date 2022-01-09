@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 # Using a snapshot for now to get 64-bit support
-define snapshot 20220108
+#define snapshot 20220108
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
