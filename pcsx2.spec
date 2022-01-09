@@ -16,8 +16,8 @@ Source0:	https://github.com/beaumanvienna/pcsx2/archive/x86_64-support/%{name}-%
 Source1:	https://github.com/google/googletest/archive/aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e.tar.gz
 %else
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
+Source1:    https://github.com/biojppm/rapidyaml/archive/refs/tags/v0.3.0/rapidyaml-0.3.0.tar.gz
 %endif
-#Patch0:         pcsx2-1.4.0-mga-allow-disabled-plugins.patch
 
 BuildRequires:	cmake
 BuildRequires:  gettext
@@ -80,7 +80,9 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 rmdir 3rdparty/gtest
 mv googletest-aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e 3rdparty/gtest
 %else
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %{name}-%{version} -a 1
+rmdir 3rdparty/rapidyaml/rapidyaml
+mv rapidyaml-0.3.0 3rdparty/rapidyaml/rapidyaml
 %endif
 
 %build
