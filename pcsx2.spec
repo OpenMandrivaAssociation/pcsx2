@@ -17,7 +17,7 @@ Source1:	https://github.com/google/googletest/archive/aee0f9d9b5b87796ee8a0ab26b
 %else
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
 %endif
-Patch0:         pcsx2-1.4.0-mga-allow-disabled-plugins.patch
+#Patch0:         pcsx2-1.4.0-mga-allow-disabled-plugins.patch
 
 BuildRequires:	cmake
 BuildRequires:  gettext
