@@ -7,7 +7,7 @@
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.7.2212
+Version:	1.7.3817
 Release:	1.%{git}.0
 License:	GPLv2+
 Group:		Emulators
