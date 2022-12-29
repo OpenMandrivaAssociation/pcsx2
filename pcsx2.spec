@@ -113,7 +113,6 @@ export CXX=g++
 # So for now we back to GCC and leave SIMD as True.
 
 %cmake \
-    -DPACKAGE_MODE=TRUE \
     -DXDG_STD=TRUE \
     -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
     -DBUILD_REPLAY_LOADERS=TRUE \
