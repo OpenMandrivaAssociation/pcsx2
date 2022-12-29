@@ -2,22 +2,19 @@
 %define _disable_lto 1
 
 # Using a snapshot for now to get 64-bit support
-#define snapshot 20220108
+# Git tag are recommended to use for distro packaging.
+%define git 20221229
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
 Version:	1.7.2212
-Release:	%{?snapshot:0.%{snapshot}.}1
+Release:	1.%{git}.0
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
-%if 0%{?snapshot:1}
-Source0:	https://github.com/beaumanvienna/pcsx2/archive/x86_64-support/%{name}-%{snapshot}.tar.gz
-Source1:	https://github.com/google/googletest/archive/aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e.tar.gz
-%else
-Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.xz
 Source1:    https://github.com/biojppm/rapidyaml/archive/refs/tags/v0.3.0/rapidyaml-0.3.0.tar.gz
-%endif
+
 
 BuildRequires:	cmake
 BuildRequires:  c4project
@@ -76,15 +73,7 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 #----------------------------------------------------------------------------
 
 %prep
-%if 0%{?snapshot:1}
-%autosetup -p1 -n %{name}-x86_64-support -a 1
-rmdir 3rdparty/gtest
-mv googletest-aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e 3rdparty/gtest
-%else
-%autosetup -p1 -n %{name}-%{version} -a 1
-rmdir 3rdparty/rapidyaml/rapidyaml
-mv rapidyaml-0.3.0 3rdparty/rapidyaml/rapidyaml
-%endif
+%autosetup -p1 -n %{name}-%{version}
 
 %build
 %global ldflags %{ldflags} -Wl,-z,notext
