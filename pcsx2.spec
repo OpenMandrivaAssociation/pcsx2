@@ -47,6 +47,23 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:  wxgtku3.0-devel
 #BuildRequires:  wxgtku2.8-devel
 
+#Qt6
+BuildRequires:	cmake(Qt6Multimedia)
+BuildRequires:	cmake(Qt6LinguistTools)
+BuildRequires:	cmake(Qt6Concurrent)
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6DBus)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Network)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:	cmake(Qt6Sql)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6Test)
+BuildRequires:  cmake(VulkanHeaders)
+BuildRequires:	qt6-qttools
+BuildRequires:	cmake(qt6)
+BuildRequires:	qmake-qt6
+
 # 1.6.0 (may 2020) and x86_64 is still not ready (angry)
 # re check it for future releases
 #ExclusiveArch:	%{ix86}
