@@ -96,8 +96,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 %autosetup -p1 -n %{name}-%{version}
 
 %build
-%global ldflags %{ldflags} -Wl,-z,notext
-%global ldflags %{ldflags} -fuse-ld=gold
+#global ldflags %{ldflags} -Wl,-z,notext
+#global ldflags %{ldflags} -fuse-ld=gold
 
 # Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (memory dump) at launch.
 # Do not switch back to Clang without testing if this issue is fixed! (angry)
