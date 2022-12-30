@@ -101,8 +101,8 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 
 # Back to GCC. Because when running PCSX2 compiled with Clang I see: illegal instruction (memory dump) at launch.
 # Do not switch back to Clang without testing if this issue is fixed! (angry)
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 
 # FIXME
@@ -122,8 +122,7 @@ export CXX=g++
     -DGAMEINDEX_DIR="%{_gamesdatadir}/%{name}" \
     -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
     -DDOC_DIR="%{_docdir}/%{name}" \
-    -DSDL2_API=TRUE \
-    -DGTK3_API=TRUE
+    -DSDL2_API=TRUE
    
 
 %make_build
