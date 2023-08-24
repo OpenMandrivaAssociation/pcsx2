@@ -3,11 +3,11 @@
 
 # Using a snapshot for now to get 64-bit support
 # Git tag are recommended to use for distro packaging.
-%define git 20221229
+%define git 20230824
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.7.3817
+Version:	1.7.4940
 Release:	1.%{git}.0
 License:	GPLv2+
 Group:		Emulators
