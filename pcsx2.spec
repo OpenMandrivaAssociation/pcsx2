@@ -15,7 +15,7 @@ Url:		http://pcsx2.net/
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:    https://github.com/biojppm/rapidyaml/archive/refs/tags/v0.3.0/rapidyaml-0.3.0.tar.gz
 
-
+BuildRequires:  cmake(ECM)
 BuildRequires:	cmake
 BuildRequires:  c4project
 BuildRequires:  gettext
