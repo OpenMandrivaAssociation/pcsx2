@@ -12,7 +12,7 @@ Release:	1.%{git}.0
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
-Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.xz
+Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:    https://github.com/biojppm/rapidyaml/archive/refs/tags/v0.3.0/rapidyaml-0.3.0.tar.gz
 
 
