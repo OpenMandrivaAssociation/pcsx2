@@ -10,7 +10,7 @@ Version:	1.7.0
 Release:	%{?snapshot:0.%{snapshot}.}1
 License:	GPLv2+
 Group:		Emulators
-Url:		http://pcsx2.net/
+Url:		https://pcsx2.net/
 %if 0%{?snapshot:1}
 Source0:	https://github.com/beaumanvienna/pcsx2/archive/x86_64-support/%{name}-%{snapshot}.tar.gz
 Source1:	https://github.com/google/googletest/archive/aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e.tar.gz
