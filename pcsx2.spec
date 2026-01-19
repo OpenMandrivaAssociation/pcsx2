@@ -13,7 +13,7 @@ License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
 Source0:	https://github.com/PCSX2/pcsx2/archive/v%{version}/%{name}-%{version}.tar.gz
-Source1:  https://github.com/PCSX2/pcsx2_patches/archive/latest.tar.gz?/pcsx-patches.tar.gz
+Source1:  https://github.com/PCSX2/pcsx2_patches/archive/pcsx2_patches-latest.tar.gz
 
 
 BuildRequires:  cmake(ECM)
