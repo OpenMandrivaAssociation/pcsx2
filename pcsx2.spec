@@ -3,12 +3,12 @@
 
 # Using a snapshot for now to get 64-bit support
 # Git tag are recommended to use for distro packaging.
-%define git 20230824
+#define git 20230824
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.7.4940
-Release:	1.%{git}.0
+Version:	2.6.2
+Release:	1
 License:	GPLv2+
 Group:		Emulators
 Url:		http://pcsx2.net/
@@ -42,15 +42,55 @@ BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(libzip)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:	pkgconfig(portaudio-2.0)
-BuildRequires:	pkgconfig(sdl2)
+BuildRequires:  pkgconfig(glu)
+BuildRequires:  pkgconfig(sdl3)
 BuildRequires:	pkgconfig(soundtouch)
 BuildRequires:  pkgconfig(udev)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:  wxgtku3.0-devel
+BuildRequires:  pkgconfig(xcomposite)
+BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  pkgconfig(xdamage)
+BuildRequires:  pkgconfig(xdmcp)
+BuildRequires:  pkgconfig(xft)
+BuildRequires:  pkgconfig(xinerama)
+BuildRequires:  pkgconfig(xmu)
+BuildRequires:  pkgconfig(xrandr)
+BuildRequires:  pkgconfig(xtst)
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(dbus-1)
+BuildRequires:  pkgconfig(expat)
+BuildRequires:  pkgconfig(libavcodec)
+BuildRequires:  pkgconfig(libavformat)
+BuildRequires:  pkgconfig(libavutil)
+BuildRequires:  pkgconfig(libswresample)
+BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libbacktrace)
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libffi)
+BuildRequires:  pkgconfig(libidn2)
+BuildRequires:  pkgconfig(libjpeg)
+BuildRequires:  pkgconfig(liblzma)
+BuildRequires:  pkgconfig(liblz4)
+BuildRequires:  pkgconfig(libpcap)
+BuildRequires:  pkgconfig(libpcre2-8)
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(libtiff-4)
+BuildRequires:  pkgconfig(libwebp)
+BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(shaderc)
+BuildRequires:  pkgconfig(udev)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-egl)
 #BuildRequires:  wxgtku2.8-devel
 
+BuildRequires:  cmake(PulseAudio)
+BuildRequires:  cmake(plutovg)
+BuildRequires:  cmake(plutosvg)
+
 #Qt6
+BuildRequires:	cmake(KDDockWidgets-qt6)
 BuildRequires:	cmake(Qt6Multimedia)
 BuildRequires:	cmake(Qt6LinguistTools)
 BuildRequires:	cmake(Qt6Concurrent)
@@ -78,24 +118,10 @@ you need and how to obtain them.
 
 Very fast CPU is a must. Intel Core 2 Duo or better.
 
-%files -f %{name}.lang
-%doc COPYING.*
-%doc %{_docdir}/%{name}/*.pdf
-%{_bindir}/PCSX2
-%{_bindir}/%{name}_*
-%{_datadir}/applications/PCSX2.desktop
-%{_datadir}/pixmaps/PCSX2.xpm
-%{_datadir}/games/%{name}/cheats_ws.zip
-%attr(0666,games,games) %{_datadir}/games/%{name}/GameIndex.dbf
-%{_libdir}/games/%{name}/
-%{_mandir}/man1/PCSX2.1*
-
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
 
-%build
 #global ldflags %{ldflags} -Wl,-z,notext
 #global ldflags %{ldflags} -fuse-ld=gold
 
@@ -111,23 +137,46 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 # and when switch it to TRUE, Clang and GCC gives me illegal instruction (memory dump) at launch.
 # So for now we back to GCC and leave SIMD as True.
 
-%cmake \
-    -DXDG_STD=TRUE \
-    -DFORCE_INTERNAL_SOUNDTOUCH=FALSE \
-    -DBUILD_REPLAY_LOADERS=TRUE \
-    -DDISABLE_ADVANCE_SIMD=TRUE \
-    -DDISABLE_BUILD_TIME=TRUE \
-    -DDISABLE_PCSX2_WRAPPER=TRUE \
-    -DEXTRA_PLUGINS=TRUE \
-    -DGAMEINDEX_DIR="%{_gamesdatadir}/%{name}" \
-    -DPLUGIN_DIR="%{_libdir}/games/%{name}" \
-    -DDOC_DIR="%{_docdir}/%{name}" \
-    -DSDL2_API=TRUE
-   
+%autosetup -p1 -a1
 
-%make_build
+mv pcsx2_patches-latest/patches ./
+#rm -rf 3rdparty
+
+#Taked fro AUR
+# prevent march=native
+sed -E -e 's@^(\s*)(add_compile_options\(.*march=native.*\))@\1message("skip: march=native")@' \
+-i cmake/BuildParameters.cmake
+
+# adjust data path
+sed -E -e '/CMAKE_INSTALL_FULL_DATADIR/s@/PCSX2\b@/'"%{name}@" \
+-i "pcsx2/CMakeLists.txt" \
+"cmake/BuildParameters.cmake"
+
+%build
+%cmake \
+  -GNinja \
+  -DCMAKE_LINKER_TYPE=LLD \
+  -DPACKAGE_MODE:BOOL=ON \
+  -DBUILD_SHARED_LIBS:BOOL=OFF \
+  -DX11_API:BOOL=ON \
+  -DWAYLAND_API:BOOL=ON \
+  -DENABLE_TESTS:BOOL=OFF \
+  -DDISABLE_ADVANCE_SIMD:BOOL=ON
+%cmake_build
 
 %install
-%make_install -C build
+%cmake_install
 
-%find_lang %{name} --all-name
+install -Dp -m0644 %{name}-qt/resources/icons/AppIcon64.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/PCSX2.png
+install -Dp -m0644 bin/resources/icons/AppIconLarge.png %{buildroot}%{_iconsdir}/hicolor/512x512/apps/PCSX2.png
+install -Dp -m0644 .github/workflows/scripts/linux/%{name}-qt.desktop %{buildroot}%{_datadir}/applications/%{name}-qt.desktop
+
+mkdir -p %{buildroot}%{_datadir}/%{name}/resources
+cp -a patches %{buildroot}%{_datadir}/%{name}/resources/
+
+%files
+%doc bin/docs/*.pdf
+%caps(cap_net_admin,cap_net_raw=eip) %{_bindir}/pcsx2-qt
+%{_datadir}/applications/pcsx2-qt.desktop
+%{_datadir}/pcsx2/
+%{_iconsdir}/hicolor/*/apps/PCSX2.png
