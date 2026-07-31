@@ -6,7 +6,7 @@
 
 Summary:	Sony PlayStation 2 Emulator
 Name:		pcsx2
-Version:	1.7.0
+Version:	2.6.3
 Release:	%{?snapshot:0.%{snapshot}.}1
 License:	GPLv2+
 Group:		Emulators
@@ -74,11 +74,11 @@ Very fast CPU is a must. Intel Core 2 Duo or better.
 
 %prep
 %if 0%{?snapshot:1}
-%autosetup -p1 -n %{name}-x86_64-support -a 1
+%autosetup -p1 -n pcsx2-x86_64-support -a 1
 rmdir 3rdparty/gtest
 mv googletest-aee0f9d9b5b87796ee8a0ab26b7587ec30e8858e 3rdparty/gtest
 %else
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n pcsx2-x86_64-support
 %endif
 
 %build
